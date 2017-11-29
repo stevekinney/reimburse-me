@@ -1,0 +1,9 @@
+.NewExchangeRate label {
+  display: block;
+}
+
+.NewExchangeRate input {
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+}

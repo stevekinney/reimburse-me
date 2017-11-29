@@ -1,0 +1,9 @@
+.Application {
+  margin: auto;
+  max-width: 600px;
+}
+
+.Metadata {
+  display: flex;
+  justify-content: space-between;
+}

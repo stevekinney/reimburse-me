@@ -1,0 +1,12 @@
+.ExpenseList {
+  margin: 3em 0;
+}
+
+.ExpenseList table {
+  width: 100%;
+}
+
+.ExpenseList--summary {
+  margin: 1em 0;
+  text-align: right;
+}

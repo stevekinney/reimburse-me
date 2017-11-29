@@ -1,0 +1,25 @@
+.NewExpense--controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.NewExpense label {
+  display: block;
+  font-weight: 500;
+}
+
+.NewExpense input {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 475px) {
+  .NewExpense--controls {
+    flex-direction: column;
+  }
+
+  .NewExpense--controls > div {
+    margin-bottom: 5px;
+  }
+}
