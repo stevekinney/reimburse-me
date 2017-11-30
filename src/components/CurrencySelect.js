@@ -7,7 +7,7 @@ export default class CurrencySelect extends Component {
     return (
       <select name="currency" value={value} onChange={this.props.onChange}>
         {currencies.map(currency => (
-          <option value={currency.id}>{currency.currency}</option>
+          <option key={currency.id} value={currency.id}>{currency.currency}</option>
         ))}
       </select>
     );

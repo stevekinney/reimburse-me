@@ -7,7 +7,7 @@ export default class CategorySelect extends Component {
     return (
       <select name="category" value={value} onChange={this.props.onChange}>
         {categories.map(category => (
-          <option value={category.id}>{category.title}</option>
+          <option key={category.id} value={category.id}>{category.title}</option>
         ))}
       </select>
     );

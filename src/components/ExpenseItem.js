@@ -16,13 +16,13 @@ export default class ExpenseItem extends Component {
   }
 
   render() {
-    const { expense, currencies, categories, onUpdateExpense } = this.props;
-    console.log(expense, expense.amount * expense.currency.rate);
+    const { expense, currencies, categories } = this.props;
+
     return (
       <tr>
         <td>{expense.id}</td>
         <td style={{ textAlign: 'left' }}>{expense.title}</td>
-        <td>{formatCurrency(expense.amount)}</td>
+        <td>{expense.amount}</td>
         <td>
           <CurrencySelect currencies={currencies} value={expense.currency} onChange={this.handleChange} />
         </td>
