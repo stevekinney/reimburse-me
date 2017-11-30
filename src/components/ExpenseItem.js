@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
+import formatCurrency from '../lib/formatCurrency';
+import getAmountInUSD from '../lib/getAmountInUSD';
+
+import CategorySelect from './CategorySelect';
+import CurrencySelect from './CurrencySelect';
 
 export default class ExpenseItem extends Component {
-  render() {
-    const { expense } = this.props;
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.props.onUpdateExpense(this.props.expense.id, { [name]: value });
+  }
 
+  handleRemove = () => {
+    this.props.onRemoveExpense(this.props.expense.id);
+  }
+
+  render() {
+    const { expense, currencies, categories, onUpdateExpense } = this.props;
+    console.log(expense, expense.amount * expense.currency.rate);
     return (
       <tr>
         <td>{expense.id}</td>
-        <td style={{ 'text-align': 'left' }}>{expense.title}</td>
-        <td>{expense.amount}</td>
+        <td style={{ textAlign: 'left' }}>{expense.title}</td>
+        <td>{formatCurrency(expense.amount)}</td>
         <td>
-          <select value={expense.currency}>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="COP">COP</option>
-            <option value="GBP">GBP</option>
-          </select>
+          <CurrencySelect currencies={currencies} value={expense.currency} onChange={this.handleChange} />
         </td>
         <td>
-          <select value={expense.category}>
-            <option value="General">General</option>
-            <option value="Meals">Meals</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Internet">Internet</option>
-          </select>
+          <CategorySelect categories={categories} value={expense.category} onChange={this.handleChange} />
         </td>
-        <td>{expense.amount}</td>
+        <td>{formatCurrency(getAmountInUSD(expense, currencies))}</td>
         <td>
-          <button>
+          <button onClick={this.handleRemove}>
             &times;
           </button>
         </td>

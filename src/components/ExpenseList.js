@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 
+import formatCurrency from '../lib/formatCurrency';
+import getAmountInUSD from '../lib/getAmountInUSD';
+
 import ExpenseItem from './ExpenseItem';
 
 import './ExpenseList.css';
 
 export default class ExpenseList extends Component {
   get totalAmount() {
-    return this.props.expenses.reduce((total, { amount, currency }) => {
-      return total + parseInt(amount, 10);
+    const { expenses, currencies } = this.props;
+    return expenses.reduce((total, expense) => {
+      return total + getAmountInUSD(expense, currencies);
     }, 0);
   }
 
   render() {
-    const { expenses } = this.props;
+    const {
+      expenses,
+      onRemoveExpense,
+      currencies,
+      categories,
+      onUpdateExpense,
+    } = this.props;
 
     return (
       <section className="ExpenseList">
@@ -30,12 +40,19 @@ export default class ExpenseList extends Component {
           </thead>
           <tbody>
             {expenses.map(expense => (
-              <ExpenseItem key={expense.id} expense={expense} />
+              <ExpenseItem
+                key={expense.id}
+                expense={expense}
+                currencies={currencies}
+                categories={categories}
+                onRemoveExpense={onRemoveExpense}
+                onUpdateExpense={onUpdateExpense}
+              />
             ))}
           </tbody>
         </table>
         <div className="ExpenseList--summary">
-          <strong>Total Amount</strong>: { this.totalAmount }
+          <strong>Total Amount</strong>: {formatCurrency(this.totalAmount)}
         </div>
       </section>
     );

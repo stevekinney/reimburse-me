@@ -35,6 +35,11 @@ button:active, .button:active, input[type="submit"]:active {
   background-color: #0091f1;
 }
 
+button:disabled, .button:disabled, input[type="submit"]:disabled {
+  background-color: #eaf0f3;
+  border-color: #d0dbe2;
+}
+
 button.full-width, .button.full-width, input[type="submit"].full-width {
   width: 100%;
   margin: 1em 0;
