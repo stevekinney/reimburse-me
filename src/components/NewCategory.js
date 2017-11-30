@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uniqueId from 'lodash/uniqueId';
 
 import './NewCategory.css';
 
@@ -17,7 +18,9 @@ export default class NewExpense extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title } = this.state;
-    this.props.onAddCategory({ title });
+    const id = uniqueId();
+
+    this.props.onAddCategory({ id, title });
     this.setState(defaultState);
   }
 
